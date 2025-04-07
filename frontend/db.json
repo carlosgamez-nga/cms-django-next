@@ -1,0 +1,113 @@
+{
+  "summary": {
+    "contract_name": "Contract Name",
+    "total_fee_schedule": 4449.48,
+    "percentage_increase": 11.1
+  },
+  "contracts": [
+    {
+      "id": 1,
+      "payer_name": "Company A",
+      "state": "California",
+      "effective_date": "2025-03-01",
+      "file": "https://example.com/contract1.pdf",
+      "uploaded_at": "2025-02-10T12:30:00Z"
+    },
+    {
+      "id": 2,
+      "payer_name": "Company B",
+      "state": "Texas",
+      "effective_date": "2025-04-15",
+      "file": "https://example.com/contract2.pdf",
+      "uploaded_at": "2025-02-11T08:00:00Z"
+    },
+    {
+      "id": 3,
+      "payer_name": "Company C",
+      "state": "Florida",
+      "effective_date": "2025-05-01",
+      "file": "https://example.com/contract3.pdf",
+      "uploaded_at": "2025-02-09T14:45:00Z"
+    },
+    {
+      "id": 4,
+      "payer_name": "Company D",
+      "state": "New York",
+      "effective_date": "2025-06-01",
+      "file": "https://example.com/contract4.pdf",
+      "uploaded_at": "2025-02-08T10:15:00Z"
+    },
+    {
+      "id": 5,
+      "payer_name": "Company E",
+      "state": "Illinois",
+      "effective_date": "2025-07-01",
+      "file": "https://example.com/contract5.pdf",
+      "uploaded_at": "2025-02-07T16:00:00Z"
+    }
+  ],
+  "codes": [
+    {
+      "code": "36475",
+      "current": 1055.55,
+      "current_percent_total": 23,
+      "previous": 1022,
+      "cms": 1000,
+      "previous_percent_total": 22
+    },
+    {
+      "code": "36478",
+      "current": 964.01,
+      "previous": 922,
+      "cms": 928
+    },
+    {
+      "code": "36482",
+      "current": 1640.08,
+      "previous": 1520,
+      "cms": 1650
+    },
+    {
+      "code": "37253",
+      "current": 170.43,
+      "previous": 160,
+      "cms": 180
+    },
+    {
+      "code": "76942",
+      "current": 57.92,
+      "previous": 40,
+      "cms": 55
+    },
+    {
+      "code": "93970",
+      "current": 186.74,
+      "previous": 160,
+      "cms": 150
+    },
+    {
+      "code": "93971",
+      "current": 118.84,
+      "previous": 100,
+      "cms": 118
+    },
+    {
+      "code": "93976",
+      "current": 158.45,
+      "previous": 140,
+      "cms": 150
+    },
+    {
+      "code": "99212",
+      "current": 86.5,
+      "previous": 70,
+      "cms": 75
+    },
+    {
+      "code": "99213",
+      "current": 90.87,
+      "previous": 80,
+      "cms": 90
+    }
+  ]
+}
