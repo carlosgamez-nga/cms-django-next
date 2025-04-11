@@ -52,7 +52,7 @@ const ContractItem = ({ contract, isDetail }: ContractProps) => {
           <CardDescription>{contract.state}</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className='line-clamp-3'>{contract.file}</p>
+          <p className='line-clamp-3'>{contract.description}</p>
           <div className='text-sm text-muted-foreground'>
             <div className='flex justify-between'>
               <span>Effective Date:</span> {contract.effective_date}

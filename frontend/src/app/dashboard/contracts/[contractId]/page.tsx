@@ -16,6 +16,8 @@ const ContractPage = async ({ params }: ContractProps) => {
     notFound();
   }
 
+  console.log(contract);
+
   return (
     <div className='flex justify-center w-full'>
       <ContractItem contract={contract} isDetail />

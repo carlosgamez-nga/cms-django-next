@@ -1,18 +1,34 @@
-import { Contract } from '../components/types';
+type ValuesProps = {
+  title: string;
+  description: string;
+  payer_name: string;
+  state: string;
+  file: File;
+};
 
-export const uploadContract = async (contract: Contract) => {
-  if (!contract || typeof contract !== 'object') {
-    throw new Error('Invalid contract data');
-  }
+export const postContract = async (values: ValuesProps) => {
+  const formData = new FormData();
+
+  // Append each property to formData
+  Object.keys(values).forEach((key) => {
+    if (key === 'file') {
+      formData.append(key, values.file);
+    } else {
+      formData.append(key, key);
+    }
+  });
+
+  console.log(formData);
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contracts`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contracts/`,
     {
       method: 'POST',
+      body: formData,
       headers: {
-        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
       },
-      body: JSON.stringify(contract),
     }
   );
 

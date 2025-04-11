@@ -25,7 +25,7 @@ import { Button } from '@/components/ui/button';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { uploadContract } from '@/features/contract/queries/post-contract';
+// import { postContract } from '@/features/contract/queries/post-contract';
 import {
   Select,
   SelectContent,
@@ -104,8 +104,8 @@ const formSchema = z.object({
   payer_name: z.string(),
   state: z.enum(states),
   file: z
-    .custom<FileList>((val) => val instanceof FileList, 'Required')
-    .refine((files) => files.length > 0, `Required`),
+    .custom<File>((val) => val instanceof File, 'Must be a valid File')
+    .refine((file) => file !== null && file !== undefined, 'File is required'),
 });
 
 export default function ContractUpload({ title }: ContractUploadProps) {
@@ -120,18 +120,27 @@ export default function ContractUpload({ title }: ContractUploadProps) {
     },
   });
 
-  // const handleSubmit = (values: z.infer<typeof formSchema>) => {
-  //   console.log(values);
-  // };
-
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
-    try {
-      const contractToUpload = values;
-      const response = await uploadContract(contractToUpload);
-      console.log('Upload successful:', response);
-    } catch (error) {
-      console.error('Error uploading file:', error);
-    }
+    const formData = new FormData();
+
+    Object.keys(values).forEach((key) => {
+      if (key === 'file') {
+        formData.append(key, values.file);
+      } else {
+        formData.append(key, key as string);
+      }
+    });
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contracts/`,
+      {
+        method: 'POST',
+        body: formData,
+      }
+    );
+
+    const data = await res.json();
+    console.log(data);
   };
 
   return (
@@ -179,7 +188,7 @@ export default function ContractUpload({ title }: ContractUploadProps) {
                       <FormLabel>Description</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder='Write a little desription about your contract'
+                          placeholder='Write a little description about your contract'
                           className='resize-none'
                           {...field}
                         />
@@ -241,7 +250,11 @@ export default function ContractUpload({ title }: ContractUploadProps) {
                       <FormControl>
                         <Input
                           type='file'
-                          onChange={(e) => field.onChange(e.target.files)}
+                          onChange={(e) => {
+                            if (e.target.files && e.target.files.length > 0) {
+                              field.onChange(e.target.files[0]);
+                            }
+                          }}
                           className='border-dashed border-blue-500 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 file:border file:border-solid file:border-blue-700 file:rounded-md file:text-center'
                         />
                       </FormControl>

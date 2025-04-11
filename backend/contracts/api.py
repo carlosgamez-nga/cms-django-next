@@ -1,19 +1,11 @@
 from rest_framework import viewsets, permissions, status
-from rest_framework.decorators import action
-from rest_framework.response import Response
+from rest_framework.parsers import MultiPartParser, FormParser
 from .models import Contract
 from .serializers import ContractSerializer
-
 
 class ContractViewSet(viewsets.ModelViewSet):
     queryset = Contract.objects.all()
     permission_classes = [permissions.AllowAny]
+    parser_classes = [MultiPartParser, FormParser]
     serializer_class = ContractSerializer
 
-    @action(methods=['post'], detail=False)
-    def upload_contract(self, request):
-        serializer = ContractSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
