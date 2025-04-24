@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import {
   Form,
   FormControl,
@@ -25,7 +27,6 @@ import { Button } from '@/components/ui/button';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-// import { postContract } from '@/features/contract/queries/post-contract';
 import {
   Select,
   SelectContent,
@@ -33,6 +34,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { postContract } from '../queries/post-contract';
+import { useState } from 'react';
 
 type ContractUploadProps = {
   title: string;
@@ -109,6 +112,9 @@ const formSchema = z.object({
 });
 
 export default function ContractUpload({ title }: ContractUploadProps) {
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -121,26 +127,10 @@ export default function ContractUpload({ title }: ContractUploadProps) {
   });
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
-    const formData = new FormData();
-
-    Object.keys(values).forEach((key) => {
-      if (key === 'file') {
-        formData.append(key, values.file);
-      } else {
-        formData.append(key, key as string);
-      }
-    });
-
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contracts/`,
-      {
-        method: 'POST',
-        body: formData,
-      }
-    );
-
-    const data = await res.json();
-    console.log(data);
+    postContract(values);
+    setOpen(false);
+    form.reset();
+    router.refresh();
   };
 
   return (
@@ -148,7 +138,7 @@ export default function ContractUpload({ title }: ContractUploadProps) {
       <div className='flex justify-between items-center mx-8'>
         <h5>{title}</h5>
 
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button>Upload contract</Button>
           </DialogTrigger>

@@ -1,4 +1,4 @@
-import Gradient from '@/components/ui/gradient';
+import Gradient from '@/components/gradient';
 
 type Props = {
   children?: React.ReactNode;

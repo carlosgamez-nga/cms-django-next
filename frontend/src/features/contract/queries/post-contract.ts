@@ -13,28 +13,26 @@ export const postContract = async (values: ValuesProps) => {
   Object.keys(values).forEach((key) => {
     if (key === 'file') {
       formData.append(key, values.file);
-    } else {
-      formData.append(key, key);
+    } else if (key === 'state') {
+      formData.append(key, values.state);
+    } else if (key === 'title') {
+      formData.append(key, values.title);
+    } else if (key === 'description') {
+      formData.append(key, values.description);
+    } else if (key === 'payer_name') {
+      formData.append(key, values.payer_name);
     }
   });
 
-  console.log(formData);
-
-  const response = await fetch(
+  const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contracts/`,
     {
       method: 'POST',
       body: formData,
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'multipart/form-data',
-      },
     }
   );
 
-  if (!response.ok) {
-    throw new Error(`Failed to upload contract: ${response.statusText}`);
-  }
+  const data = await res.json();
 
-  return await response.json();
+  return data;
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from '../../features/dashboard/components/sidebar';
-import TopbarContainer from '../../features/dashboard/components/topbar-container';
+import TopbarContainer from '../../components/topbar-container';
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (

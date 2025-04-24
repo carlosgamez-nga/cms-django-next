@@ -1,8 +1,9 @@
 'use client';
 
-import { contractPath } from '../../../path';
+import { contractPath } from '@/path';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -13,7 +14,7 @@ import {
 } from '@/components/ui/card';
 import { Contract } from './types';
 import { clsx } from 'clsx';
-import { Button } from '@/components/ui/button';
+import { deleteContract } from '../queries/delete-contract';
 
 type ContractProps = {
   contract: Contract;
@@ -25,13 +26,8 @@ const ContractItem = ({ contract, isDetail }: ContractProps) => {
 
   const handleDelete = async (id: string) => {
     if (window.confirm('Are you sure you want to delete this contract?')) {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contracts/${id}`,
-        {
-          method: 'DELETE',
-        }
-      );
-      if (res.status === 204) {
+      const res = await deleteContract(id);
+      if (res && res.status === 204) {
         router.push('/dashboard/contracts');
       }
     }
@@ -52,7 +48,13 @@ const ContractItem = ({ contract, isDetail }: ContractProps) => {
           <CardDescription>{contract.state}</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className='line-clamp-3'>{contract.description}</p>
+          <p
+            className={clsx('whitespace-break-spaces', {
+              'line-clamp-3': !isDetail,
+            })}
+          >
+            {contract.description}
+          </p>
           <div className='text-sm text-muted-foreground'>
             <div className='flex justify-between'>
               <span>Effective Date:</span> {contract.effective_date}

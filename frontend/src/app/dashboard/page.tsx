@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import Spinner from '@/components/ui/spinner';
+import Spinner from '@/components/spinner';
 import ContractUpload from '@/features/contract/components/contract-upload';
 import Heading from '@/features/dashboard/components/heading';
 import ChartCard from '@/features/dashboard/components/chart-card';

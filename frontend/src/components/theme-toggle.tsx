@@ -3,9 +3,9 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from './tooltip';
+} from './ui/tooltip';
 import { PiCircleHalfFill } from 'react-icons/pi';
-import { cn } from '../../lib/utils';
+import { cn } from '@/lib/utils';
 
 type Props = {
   className?: string;
