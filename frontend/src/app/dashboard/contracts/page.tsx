@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 
 import Spinner from '@/components/spinner';
 import ContractUpload from '@/features/contract/components/contract-upload';
-import Heading from '@/features/dashboard/components/heading';
+import Heading from '@/components/heading';
 import ContractList from '@/features/contract/components/contract-list';
 
 const ContractsPage = () => {
