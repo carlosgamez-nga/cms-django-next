@@ -5,7 +5,7 @@ import CPTCodesInfo from './cpt-codes-info';
 
 const ChartCard = () => {
   return (
-    <Card className='my-4 mx-8'>
+    <Card>
       <CardHeader>
         <div className='flex justify-between'>
           <div className='header-left'>

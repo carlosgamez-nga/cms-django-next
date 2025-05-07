@@ -1,6 +1,6 @@
 import {
   Card,
-  CardContent,
+  // CardContent,
   CardFooter,
   CardHeader,
   CardTitle,

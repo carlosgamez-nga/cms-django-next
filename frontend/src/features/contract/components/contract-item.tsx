@@ -1,5 +1,4 @@
 'use client';
-
 import { contractPath } from '@/path';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -37,9 +36,9 @@ const ContractItem = ({ contract, isDetail }: ContractProps) => {
 
   return (
     <div
-      className={clsx('w-full flex gap-x-1', {
-        'max-w-[450px]': !isDetail,
-        'max-w-[580px]': isDetail,
+      className={clsx('w-full flex gap-x-1 animate-fade-in-from-top', {
+        'max-w-[450px] ': !isDetail,
+        'w-full col-span-6 lg:col-span-2': isDetail,
       })}
     >
       <Card className='w-full'>
