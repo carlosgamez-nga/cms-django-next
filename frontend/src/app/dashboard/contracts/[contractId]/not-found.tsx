@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { contractsPath } from '@/path';
 import Link from 'next/link';
-import Placeholder from '@/features/dashboard/components/placeholder';
+import Placeholder from '@/components/placeholder';
 
 const NotFound = () => {
   return (

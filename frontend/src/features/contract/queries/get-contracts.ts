@@ -1,4 +1,4 @@
-import { Contract } from '../components/types';
+import { Contract } from '../../types';
 
 export const getContracts = async (): Promise<Contract[]> => {
   // testing only

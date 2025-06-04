@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Nunito_Sans } from 'next/font/google';
 import { cn } from '@/lib/utils';
-import TanstackProvider from '../providers/TanstackProvider';
+// import TanstackProvider from '../providers/TanstackProvider';
 import './globals.css';
 
 const nunitoSans = Nunito_Sans({
@@ -21,10 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
-      <body className={cn(nunitoSans.className)}>
-        <TanstackProvider>{children}</TanstackProvider>
-      </body>
+    <html lang='en' suppressHydrationWarning>
+      <body className={cn(nunitoSans.className)}>{children}</body>
     </html>
   );
 }

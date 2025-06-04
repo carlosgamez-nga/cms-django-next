@@ -1,3 +1,5 @@
+'use server';
+
 export const deleteContract = async (
   id: string
 ): Promise<Response | undefined> => {

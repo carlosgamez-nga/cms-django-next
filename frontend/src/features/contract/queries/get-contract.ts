@@ -1,4 +1,4 @@
-import { Contract } from '../components/types';
+import { Contract } from '../../types';
 import { getContracts } from './get-contracts';
 
 export const getContract = async (

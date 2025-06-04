@@ -11,13 +11,14 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Contract } from './types';
+import { Contract, CodeCPT } from '../../types';
 import { clsx } from 'clsx';
 import { deleteContract } from '../queries/delete-contract';
 
 type ContractProps = {
   contract: Contract;
   isDetail?: boolean;
+  data?: CodeCPT[];
 };
 
 const ContractItem = ({ contract, isDetail }: ContractProps) => {

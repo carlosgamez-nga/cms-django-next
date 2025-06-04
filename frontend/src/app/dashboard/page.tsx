@@ -1,26 +1,19 @@
-// import { Suspense } from 'react';
-
-// import Spinner from '@/components/spinner';
-// import ContractUpload from '@/features/contract/components/contract-upload';
-import Heading from '@/components/heading';
-import { buttonVariants } from '@/components/ui/button';
-import { contractsPath } from '@/path';
-import Link from 'next/link';
-// import ChartCard from '@/features/dashboard/components/chart-card';
-// import ContractList from '@/features/contract/components/contract-list';
+import AppAreaChart from '@/components/app-area-chart';
+import AppBarChart from '@/components/app-bar-chart';
 
 export function Page() {
   return (
-    <div className='flex-1 flex flex-col gap-y-8'>
-      <Heading title='Home' description='Welcome to your dashboard' />
-      <div className='flex justify-center items-center'>
-        <Link
-          href={contractsPath()}
-          className={buttonVariants({ variant: 'outline' })}
-        >
-          Go to your Contracts
-        </Link>
+    <div className='grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 gap-4'>
+      <div className='rounded-lg lg:col-span-2 xl:col-span-1 2xl:col-span-2'>
+        <AppBarChart />
       </div>
+      <div className='bg-primary-foreground p-4 rounded-lg'>test</div>
+      <div className='bg-primary-foreground p-4 rounded-lg'>test</div>
+      <div className='bg-primary-foreground p-4 rounded-lg'>test</div>
+      <div className='rounded-lg lg:col-span-2 xl:col-span-1 2xl:col-span-2'>
+        <AppAreaChart />
+      </div>
+      <div className='bg-primary-foreground p-4 rounded-lg'>test</div>
     </div>
   );
 }

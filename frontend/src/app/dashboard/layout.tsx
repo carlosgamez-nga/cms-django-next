@@ -1,13 +1,29 @@
-import Header from '@/components/header';
+import { cookies } from 'next/headers';
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+import AppSidebar from '@/components/app-sidebar';
+import Navbar from '@/components/navbar';
+import { SidebarProvider } from '@/components/ui/sidebar';
+import { ThemeProvider } from '@/providers/ThemeProvider';
+
+const layout = async ({ children }: { children: React.ReactNode }) => {
+  const cookieStore = await cookies();
+  const defaultOpen = cookieStore.get('sidebar_state')?.value === 'true';
+
   return (
-    <div className='flex overflow-hidden'>
-      <Header />
-      <main className='min-h-screen flex-1 overflow-y-auto overflow-x-hidden py-24 px-8 bg-secondary/20 flex flex-col'>
-        {children}
-      </main>
-    </div>
+    <ThemeProvider
+      attribute='class'
+      defaultTheme='system'
+      enableSystem
+      disableTransitionOnChange
+    >
+      <SidebarProvider defaultOpen={defaultOpen}>
+        <AppSidebar />
+        <main className='w-full'>
+          <Navbar />
+          <div className='px-8'>{children}</div>
+        </main>
+      </SidebarProvider>
+    </ThemeProvider>
   );
 };
 
